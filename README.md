@@ -5,6 +5,9 @@
 - [Hacia Total Commander](#hacia-total-commander)
   - [Table of contents](#table-of-contents)
   - [Screenshots](#screenshots)
+    - [MacOs](#macos)
+    - [Windows](#windows)
+    - [Linux](#linux)
   - [Technologies](#technologies)
   - [Setup](#setup)
   - [Features](#features)
@@ -14,23 +17,34 @@
 
 ## Screenshots
 
+### MacOs
+
+
 ![Example screenshot](images/main.png)
 
-Drag & Drop option
+* Drag & Drop option
 
 ![Example screenshot](images/dd.png)
 
-Info of a file
+* Info of a file
 
 ![Example screenshot](images/fileInfo.png)
 
-Select path
+* Select path
 
 ![Example screenshot](images/path.png)
 
-Several option (Copy, Move, New Folder, Delete)
+* Several option (Copy, Move, New Folder, Delete)
 
 ![Example screenshot](images/option.png)
+
+### Windows
+
+![Example screenshot](images/windows.png)
+
+### Linux
+
+![Example screenshot](images/linux.png)
 
 ## Technologies
 * Java 
