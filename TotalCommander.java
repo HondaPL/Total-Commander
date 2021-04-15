@@ -67,7 +67,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
         b12_F6 = new JButton("F6 MOVE");
         b13_F7 = new JButton("F7 NEW FOLDER");
         b14_F8 = new JButton("F8 DELETE");
-        b15_CMD_Q = new JButton("CMD+Q EXIT");
+        b15_CMD_Q = new JButton("EXIT");
         b16GoTo = new JButton("Go to");
         b17GoTo = new JButton("Go to");
 
@@ -224,19 +224,19 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
         if (hmm) {
         files = a.listFiles();
         files2 = b.listFiles();
-        if (!a.getPath().equals("/")) {
+        if (!a.getPath().equals("/") && (!a.getPath().equals(root + sep))) {
             try {
                 data = new String[files.length + 1][2];
             } catch (NullPointerException e) {
                 data = new String[1][2];
             }
-            data[0][0] = root;
+            data[0][0] = "[...]";
             data[0][1] = getCreationDate(a);
             i = 1;
         } else {
             data = new String[files.length][2];
         }
-        if (!b.getPath().equals("/")) {
+        if (!b.getPath().equals("/") && (!b.getPath().equals(root + sep))) {
             try {
                 data2 = new String[files2.length + 1][2];
             } catch (NullPointerException e) {
@@ -492,7 +492,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
         panel.repaint();
         panel.setBackground(new Color(200, 200, 200));
         icon = changingIcons(a, data, row);
-        if (row != 0 || a.getPath().equals("/")) {
+        if (row != 0 || (a.getPath().equals("/")  && (!b.getPath().equals(root + sep)))) {
             l4 = new JLabel(deleteBrackets(data[row][0]), icon, JLabel.CENTER);
         } else {
             l4 = new JLabel(a.getName(), icon, JLabel.CENTER);
@@ -516,7 +516,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
 
     //Getting size of file
     public String getSize(File fileToGetType, String[][] data, int row) {
-        if (row == 0 && !fileToGetType.getPath().equals("/")) {
+        if (row == 0 && !fileToGetType.getPath().equals("/") && !fileToGetType.getPath().equals(root+sep) ) {
             if(fileToGetType.isDirectory()) {
                 return "<DIR>";
             } else {
@@ -534,7 +534,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
 
     //Getting type of file
     public String getType(File fileToGetType, String[][] data, int row) {
-        if (row == 0 && !fileToGetType.getPath().equals("/")) {
+        if (row == 0 && !fileToGetType.getPath().equals("/") && !fileToGetType.getPath().equals(root+sep)) {
             return "Directory";
         } else {
             File fileName = new File(fileToGetType.getPath() + sep + deleteBrackets(data[row][0]));
@@ -556,7 +556,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
     //Getting last modification date
     public String getLastModifiedDate(File fileToGetDate, String[][] data, int row){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        if (row == 0 && !fileToGetDate.getPath().equals("/")) {
+        if (row == 0 && !fileToGetDate.getPath().equals("/") && !fileToGetDate.getPath().equals(root+sep)) {
             return dateFormat.format(fileToGetDate.lastModified());
         } else {
             File fileName = new File(fileToGetDate.getPath() + sep + deleteBrackets(data[row][0]));
@@ -774,7 +774,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
         String ab = data[row][0];
         File aCopy = null;
         if (ab.equals("[...]")) {
-            if(!a.getPath().equals("/")) {
+            if(!a.getPath().equals("/") && !a.getPath().equals(root+sep)) {
                 a = new File(a.getParent());
             }
         } else {
@@ -803,7 +803,7 @@ public class TotalCommander implements ActionListener, MouseListener, KeyListene
     public Icon changingIcons(File a, String[][] data, int row)  {
         String ab =data[row][0];
         if (ab.equals("[...]")) {
-            if (!a.getPath().equals("/")) {
+            if (!a.getPath().equals("/") && !a.getPath().equals(root+sep)) {
                 x = new File(a.getPath());
             }
         } else {
